@@ -1,0 +1,4 @@
+RUN apt-get install -y libunwind7-dev
+RUN mkdir -p /deps/gperftools
+RUN cd /deps; git clone "https://code.google.com/p/gperftools/"
+RUN cd /deps/gperftools;  git checkout gperftools-2.1; ./autogen.sh; ./configure --prefix=/usr; make; make install

@@ -1,0 +1,9 @@
+FROM ubuntu
+MAINTAINER Aaron Miller <aaron@couchbase.com>
+
+#include "packaged-deps.docker"
+#include "gperftools.docker"
+
+ADD vendor/repo /usr/local/bin/repo
+RUN chmod a+x /usr/local/bin/repo
+RUN mkdir /build; cd /build; repo init --no-repo-verify -u "git://github.com/couchbase/manifest.git" -m rel-2.5.0.xml
