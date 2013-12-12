@@ -1,0 +1,8 @@
+// # seriously, how do I not build erlang's docs? fop requirement imports *java*
+RUN apt-get install -y libncurses-dev xsltproc fop
+RUN mkdir /erlang-build
+RUN git clone "git://github.com/erlang/otp" /erlang-build
+RUN cd /erlang-build; git checkout OTP_R16B02;
+RUN touch /erlang-build/lib/wx/SKIP; touch /erlang-build/lib/megaco/SKIP; touch /erlang-build/lib/debugger/SKIP
+RUN cd /erlang-build; ERL_TOP=/erlang-build ./otp_build setup
+RUN cd /erlang-build; make install

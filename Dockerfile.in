@@ -3,7 +3,12 @@ MAINTAINER Aaron Miller <aaron@couchbase.com>
 
 #include "packaged-deps.docker"
 #include "gperftools.docker"
+#ifdef BUILD_ERLANG
+#include "erlang.docker"
+#endif
 
 ADD vendor/repo /usr/local/bin/repo
 RUN chmod a+x /usr/local/bin/repo
-RUN mkdir /build; cd /build; repo init --no-repo-verify -u "git://github.com/couchbase/manifest.git" -m rel-2.5.0.xml
+RUN useradd -m builder
+ADD http://cbfs-ext.hq.couchbase.com/dustin/tmp/dgitconfig /.gitconfig
+RUN mkdir /build; chmod 777 /build; su -c 'cd /build; repo init --no-repo-verify -u "git://github.com/couchbase/manifest.git" -m rel-2.5.0.xml' builder
