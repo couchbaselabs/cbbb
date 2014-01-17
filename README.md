@@ -20,7 +20,11 @@ start virtualbox with your docker vm, using...
 
     dvm up
 
-check your docker vm is running, via...
+or, if your docker vm got stuck somehow, try...
+
+    dvm reload
+
+also, you can check your docker vm is ok and running, via...
 
     docker info
 
@@ -30,13 +34,10 @@ build, using...
 
 ## using the image
 
-to get a shell...
+to repo sync...
 
-    docker run -t -i -rm couchbase-builder /bin/bash
+    docker run -t -i -w=/build couchbase-builder repo sync
 
-once you have a shell, you can...
+to make...
 
-    > cd /build
-    > repo sync
-    > make
-
+    docker run -t -i -w=/build couchbase-builder make
