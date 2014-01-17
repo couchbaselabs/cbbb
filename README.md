@@ -12,7 +12,7 @@ for OSX...
 
     eval $(dvm env)
 
-## building
+## building the image
 
 for OSX...
 
@@ -27,4 +27,16 @@ check your docker vm is running, via...
 build, using...
 
     ./build.sh
+
+## using the image
+
+to get a shell...
+
+    docker run -t -i -rm couchbase-builder /bin/bash
+
+once you have a shell, you can...
+
+    > cd /build
+    > repo sync
+    > make
 
